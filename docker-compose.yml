@@ -8,7 +8,7 @@ services:
     volumes:
       - ./src:/var/www/html/catasrp
     ports:
-      - "8010:80" # host:container
+      - "8014:80" # host:container
 
   db:
     image: mysql:5.7
@@ -19,7 +19,7 @@ services:
       - MYSQL_PASSWORD=userpass
       - TZ=America/Sao_Paulo
     ports:
-      - "3310:3306" # host:container
+      - "3314:3306" # host:container
     volumes:
       - db-data:/var/lib/mysql
       - ./mysql-init:/docker-entrypoint-initdb.d
