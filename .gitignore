@@ -1,0 +1,37 @@
+# Extenções que devem ser ignoradas
+*.txt
+*.sql
+*.log
+*.zip
+*.md
+# O enviroment não deve serguir para o controle de versões
+src/.env
+# Nenhum arquivo publico deve seguir ao controle de versões
+src/public/conectabanco/**
+src/public/documentacao/**
+src/public/arquitetura/**
+src/public/testabanco/**
+src/public/externos/**
+src/public/info.php
+# As mudanças na estrutura dos arquivos devem ser respeitadas
+src/writable/debugbar/*
+src/writable/uploads/*
+src/writable/session/*
+src/writable/cache/*
+src/writable/logs/*
+# O Conteúdo gerado pelo framework não deve ser rastreado
+src/public/writable/debugbar/*
+src/public/writable/uploads/*
+src/public/writable/session/*
+src/public/writable/cache/*
+src/public/writable/logs/*
+# Os arquivos index.html devem subir no Push
+!src/public/writable/cache/index.html
+!src/public/writable/debugbar/index.html
+!src/public/writable/logs/index.html
+!src/public/writable/session/index.html
+!src/public/writable/uploads/index.html
+# O Arquivo que carrega o script do Banco de dados deve ser carregado
+!mysql-init/script.sql
+# O Arquivo README.md deve subir
+!README.md
