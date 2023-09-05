@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./src:/var/www/html/catasrp
+      - ./src:/var/www/html/apijitsi
     ports:
       - "8014:80" # host:container
 

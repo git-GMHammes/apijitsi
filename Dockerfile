@@ -29,18 +29,18 @@ RUN a2enmod rewrite
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Copia o app e altera permissões
-COPY ./src /var/www/html/catasrp
+COPY ./src /var/www/html/apijitsi
 
 
 # Modifica a configuração do DocumentRoot
-ENV APACHE_DOCUMENT_ROOT /var/www/html/catasrp/public
+ENV APACHE_DOCUMENT_ROOT /var/www/html/apijitsi/public
 
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 RUN chown -R www-data:www-data /var/www
-RUN echo '<Directory /var/www/html/catasrp/>' >> /etc/apache2/apache2.conf && \
+RUN echo '<Directory /var/www/html/apijitsi/>' >> /etc/apache2/apache2.conf && \
     echo '   Options Indexes FollowSymLinks' >> /etc/apache2/apache2.conf && \
     echo '   AllowOverride All' >> /etc/apache2/apache2.conf && \
     echo '   Require all granted' >> /etc/apache2/apache2.conf && \
