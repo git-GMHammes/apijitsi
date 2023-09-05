@@ -29,8 +29,46 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-
+// $routes->get('/', 'Home::index');
+$routes->addRedirect('/', 'meet/jitsi/endpoint/main');
+#
+// $routes->get('__', 'Controller::__');
+// $routes->get('__/(:segment)', 'Controller::__/$1');
+// $routes->get('__/(:any)', 'Controller::__/$1');
+// $routes->post('__', 'Controller::__');
+// $routes->post('__/(:segment)', 'Controller::__/$1');
+// $routes->post('__/(:any)', 'Controller::__/$1');
+#
+# /www/meet/(:any)
+$routes->addRedirect('/meet', 'meet/jitsi/endpoint/main');
+$routes->group('meet', function ($routes) {
+    # /www/meet/jitsi/(:any)
+    $routes->addRedirect('/meet/jitsi', 'meet/jitsi/endpoint/main');
+    $routes->group('jitsi', function ($routes) {
+        # /www/meet/jitsi/api/(:any)
+        $routes->addRedirect('/meet/jitsi/api', 'meet/jitsi/endpoint/main');
+        $routes->group('api', function ($routes) {
+            # /www/meet/jitsi/api/main/(:any)
+            $routes->get('main', 'MainApiController::easyIntegrates');
+            $routes->get('main/(:segment)', 'MainApiController::easyIntegrates/$1');
+            $routes->get('main/(:any)', 'MainApiController::easyIntegrates/$1');
+            $routes->post('main', 'MainApiController::easyIntegrates');
+            $routes->post('main/(:segment)', 'MainApiController::easyIntegrates/$1');
+            $routes->post('main/(:any)', 'MainApiController::easyIntegrates/$1');
+        });
+        # /www/meet/jitsi/endpoint/(:any)
+        $routes->addRedirect('/meet/jitsi/endpoint', 'meet/jitsi/endpoint/main');
+        $routes->group('endpoint', function ($routes) {
+            # /www/meet/jitsi/endpoint/main/(:any)
+            $routes->get('main', 'MainEndPointController::easyIntegrates');
+            $routes->get('main/(:segment)', 'MainEndPointController::easyIntegrates/$1');
+            $routes->get('main/(:any)', 'MainEndPointController::easyIntegrates/$1');
+            $routes->post('main', 'MainEndPointController::easyIntegrates');
+            $routes->post('main/(:segment)', 'MainEndPointController::easyIntegrates/$1');
+            $routes->post('main/(:any)', 'MainEndPointController::easyIntegrates/$1');
+        });
+    });
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
