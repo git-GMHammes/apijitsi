@@ -33,5 +33,7 @@ src/public/writable/logs/*
 !src/public/writable/uploads/index.html
 # O Arquivo que carrega o script do Banco de dados deve ser carregado
 !mysql-init/script.sql
+# O volume de banco de dados, não deverá ser copiado ao repositório
+db-data/**
 # O Arquivo README.md deve subir
 !README.md

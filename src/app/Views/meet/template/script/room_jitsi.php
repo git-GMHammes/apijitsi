@@ -1,20 +1,12 @@
+<script src='https://localhost:8443/external_api.js'></script>
 <script>
-    // Importe as funções necessárias da biblioteca lib-jitsi-meet
-    import {
-        initJitsiConference
-    } from 'lib-jitsi-meet';
-
-    // Obtenha o elemento HTML onde a conferência será incorporada
-    const jitsiContainer = document.getElementById('jitsi-container');
-
-    // Configurações da conferência
+    const domain = 'localhost:8443';
     const options = {
-        roomName: 'NomeDaSala', // Defina o nome da sala da conferência
-        parentNode: jitsiContainer,
+        roomName: 'JitsiMeetAPIExample',
+        width: 900,
+        height: 600,
+        parentNode: document.querySelector('#meet'),
+        lang: 'de'
     };
-
-    // Inicialize a conferência Jitsi Meet
-    const api = new JitsiMeetExternalAPI('meet.jit.si', options);
-    console.log(api);
-    // src\app\Views\meet\template\script\room_jitsi.php
+    const api = new JitsiMeetExternalAPI(domain, options);
 </script>

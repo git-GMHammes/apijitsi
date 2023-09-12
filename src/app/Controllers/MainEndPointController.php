@@ -100,20 +100,7 @@ class MainEndPointController extends ResourceController
             '/meet/room'
         );
         try {
-            # URI da API
-            $uri = base_url() . '/sigla/rota/' . $parameter;
-            # Decisão URI da API
-            if ($processRequest !== array()) {
-                $uri = base_url() . '/sigla/rota/path/path/' . $processRequest;
-            } else {
-                $uri = base_url() . '/sigla/rota/path/path/' . $parameter;
-            }
-            # Carrega a configuração de API
-            $APIform = \Config\Services::curlrequest();
-            # Recebe a API
-            $requestAPIform = $APIform->request('GET', $uri);
             # Recebe o JSON da API
-            $requestJSONform = json_decode($requestAPIform->getBody(), true); // true para exibir em array
             $requestJSONform = array();
             $apiRespond = [
                 'http' => array(
@@ -126,12 +113,13 @@ class MainEndPointController extends ResourceController
                 // 'function' => '__FUNCTION__',
                 // 'getURI' => $this->uri->getSegments(),
                 // 'protocol' => strtoupper(myIdUFF()),
-                'page_title' => 'Funções',
+                'page_title' => 'Integração com o Jitsi Meet',
                 'result' => $requestJSONform,
                 'loadView' => $loadView
             ];
         } catch (\Exception $e) {
             $apiRespond = array(
+                'page_title' => 'ERRO - Integração com o Jitsi Meet',
                 'message' => array('danger' => $e->getMessage()),
                 'loadView' => $loadView
             );

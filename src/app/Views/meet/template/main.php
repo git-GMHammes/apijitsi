@@ -16,22 +16,6 @@
         <?php (DEBUG_MY_PRINT) ? (myPrint('src\app\Views\meet\template\main.php', 'Line: 14', true)) : (NULL); ?>
     </header>
     <main>
-        <div id="meet"></div>
-        <div id="meet"></div>
-
-        <script src='https://localhost:8443/external_api.js'></script>
-        <script>
-            const domain = 'localhost:8443';
-            const options = {
-                roomName: 'JitsiMeetAPIExample',
-                width: 500,
-                height: 500,
-                parentNode: document.querySelector('#meet'),
-                lang: 'de'
-            };
-            const api = new JitsiMeetExternalAPI(domain, options);
-        </script>
-
         <?php if ($loadView !== array()) : ?>
             <?php foreach ($loadView as $getView) : ?>
                 <?php
@@ -46,7 +30,6 @@
         <p>&copy; 2023 PRODERJ. Todos os direitos reservados.</p>
         <?php
         include_once('script/room_jitsi.php');
-        // include_once('script/loginConferenciaParticipanteExterno.js');
         ?>
     </footer>
 </body>

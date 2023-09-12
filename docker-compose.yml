@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     volumes:
       - ./src:/var/www/html/apijitsi
     ports:
@@ -21,7 +21,7 @@ services:
     ports:
       - "3314:3306" # host:container
     volumes:
-      - db-data:/var/lib/mysql
+      - ./db-data:/var/lib/mysql
       - ./mysql-init:/docker-entrypoint-initdb.d
 
 volumes:

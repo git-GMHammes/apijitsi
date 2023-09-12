@@ -67,26 +67,6 @@ class MainApiController extends ResourceController
         $request = service('request');
         $processRequest = (array)$request->getVar();
         #
-
-        $apiUrl = 'https://localhost:8443'; // Substitua pelo URL correto da API do Jitsi
-
-        $ch = curl_init($apiUrl);
-
-        // Defina as opções do cURL, por exemplo, autenticação, cabeçalhos, etc.
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Atenção: Desativar a verificação SSL em produção não é seguro
-        // Adicione mais opções conforme necessário
-
-        $response1 = curl_exec($ch);
-
-        if ($response1 === false) {
-            echo 'Erro na solicitação cURL: ' . curl_error($ch);
-        } else {
-            echo 'Resposta da API do Jitsi: ' . $response1;
-        }
-
-        curl_close($ch);
-        exit();
         try {
             if ($processRequest !== array()) {
                 # CRUD da Model
